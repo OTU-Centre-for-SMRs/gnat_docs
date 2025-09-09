@@ -1,4 +1,1201 @@
-<!DOCTYPE html><head><meta charset="UTF-8"><title>ConstantTransportMaterial | Gnat</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Gnat</a><a href="https://github.com/OTU-Center-for-SMRs/gnat" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="2b50526b-d843-4b25-86ea-c198586a0c3f" data-constrainWidth="false">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="b690fdda-d70d-4f28-ba1b-e02ef1ec0b73" data-constrainWidth="false">Theory and Implementation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f3fcb258-88d6-4670-b637-9f4708a71d11" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publications.html">Publications</a></li><li><a href="../../contact.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="1d663335-60df-45af-9b85-13c3927bdf34"><i class="material-icons">menu</i></a><ul class="sidenav" id="1d663335-60df-45af-9b85-13c3927bdf34"><li><a href="#!" class="dropdown-trigger" data-target="ce4cfc4d-c556-4abb-a176-731f6ea2dd7b" data-constrainWidth="false">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="405c6990-1db2-42ca-877f-15822d9b7341" data-constrainWidth="false">Theory and Implementation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6315d152-d178-4aeb-8b16-b8582ad37172" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publications.html">Publications</a></li><li><a href="../../contact.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="2b50526b-d843-4b25-86ea-c198586a0c3f"><li><a href="../../installation/index.html">Installation</a></li><li><a href="../../tutorials/index.html">Tutorials</a></li></ul><ul class="dropdown-content" id="b690fdda-d70d-4f28-ba1b-e02ef1ec0b73"><li><a href="../../about/radiation_transport.html">Radiation Transport</a></li><li><a href="../../about/mobile_depletion.html">Fluid Depletion</a></li><li><a href="../../about/implementation.html">Implementation</a></li></ul><ul class="dropdown-content" id="f3fcb258-88d6-4670-b637-9f4708a71d11"><li><a href="../index.html">Gnat Source Pages</a></li><li><a href="https://mooseframework.inl.gov/source/index.html">MOOSE Source Pages</a></li></ul><ul class="dropdown-content" id="ce4cfc4d-c556-4abb-a176-731f6ea2dd7b"><li><a href="../../installation/index.html">Installation</a></li><li><a href="../../tutorials/index.html">Tutorials</a></li></ul><ul class="dropdown-content" id="405c6990-1db2-42ca-877f-15822d9b7341"><li><a href="../../about/radiation_transport.html">Radiation Transport</a></li><li><a href="../../about/mobile_depletion.html">Fluid Depletion</a></li><li><a href="../../about/implementation.html">Implementation</a></li></ul><ul class="dropdown-content" id="6315d152-d178-4aeb-8b16-b8582ad37172"><li><a href="../index.html">Gnat Source Pages</a></li><li><a href="https://mooseframework.inl.gov/source/index.html">MOOSE Source Pages</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input type_="text" onkeyup="mooseSearch()" placeholder="/index.md" id="moose-search-box"></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">materials</span><a href="#" class="breadcrumb">ConstantTransportMaterial</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section id="8299a856-36f0-409f-b295-a2ea59ebd7c9" data-section-level="1" data-section-text="ConstantTransportMaterial"><h1 id="constanttransportmaterial">ConstantTransportMaterial</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The ConstantTransportMaterial has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Provides the particle group velocity (<span class="moose-katex-inline-equation" id="moose-equation-ee4d677b-2c33-490f-b396-bbd292eedc2b"><script>var element = document.getElementById("moose-equation-ee4d677b-2c33-490f-b396-bbd292eedc2b");katex.render("v_{g}", element, {displayMode:false,throwOnError:false});</script></span>), particle group total cross-section (<span class="moose-katex-inline-equation" id="moose-equation-5a55304d-ed20-49e1-9d29-ec22b358a13f"><script>var element = document.getElementById("moose-equation-5a55304d-ed20-49e1-9d29-ec22b358a13f");katex.render("\\Sigma_{a,g}", element, {displayMode:false,throwOnError:false});</script></span>), and the scattering cross-section moments (<span class="moose-katex-inline-equation" id="moose-equation-54bbc67e-274f-44ad-8b4e-45c1920f1b4e"><script>var element = document.getElementById("moose-equation-54bbc67e-274f-44ad-8b4e-45c1920f1b4e");katex.render("\\Sigma_{s, g', g, l}", element, {displayMode:false,throwOnError:false});</script></span>) for transport problems. If no scattering cross-section moments are provided, the material initializes all moments to 0. The properties must be listed in decreasing order by energy.</p><section class="scrollspy" id="2bc897ec-b82e-49cf-9ee2-6e1fb6d064cb" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section class="scrollspy" id="c6bbe11a-984f-49d8-b67e-72dc788a4257" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section class="scrollspy" id="15432944-acf7-4761-9cc8-f110e988a8b0" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="0a2a80bb-96e4-4eb1-aeec-441bf562c4a4" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">group_scattering</span><span class="moose-parameter-header-description">The group-to-group scattering cross-section moments for all energy groups.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The group-to-group scattering cross-section moments for all energy groups.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">group_total</span><span class="moose-parameter-header-description">The macroscopic particle total cross-sections for all energy groups.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The macroscopic particle total cross-sections for all energy groups.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="472a6d14-f1ab-4f07-acd6-1ff6415fa737" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">add_heating</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this material should provide fission heating cross-sections.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this material should provide fission heating cross-sections.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">anisotropy</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The scattering anisotropy of the medium.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The scattering anisotropy of the medium.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, ELEMENT, SUBDOMAIN</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">declare_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">group_fission_spectra</span><span class="moose-parameter-header-description">The neutron fission spectra.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The neutron fission spectra.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">group_production</span><span class="moose-parameter-header-description">The neutron production cross-sections (product of the fission cross-section and the neutron yield) for all neutron energy groups.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The neutron production cross-sections (product of the fission cross-section and the neutron yield) for all neutron energy groups.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">group_speeds</span><span class="moose-parameter-header-description">The particle speeds for all energy groups.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The particle speeds for all energy groups.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">has_fission</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not the transport system accounts for fission reactions.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not the transport system accounts for fission reactions.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">is_diffusion</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not the transport system is initializing a diffusion approximation scheme.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not the transport system is initializing a diffusion approximation scheme.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">is_saaf</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Whether or not the transport system is initializing a SAAF scheme.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not the transport system is initializing a SAAF scheme.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">num_groups</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The number of energy groups the energy spectrum is divided into.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The number of energy groups the energy spectrum is divided into.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">particle_type</span><span class="moose-parameter-header-default">neutron</span><span class="moose-parameter-header-description">The type of particle to be consuming material property data.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>neutron</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>neutron, photon</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The type of particle to be consuming material property data.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">saaf_c</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">Stabilization parameter c for the SAAF-CFEM scheme. eta = 0 and c = 1 is equivalent to the SAAF approach with no void treatment. Use with caution.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Stabilization parameter c for the SAAF-CFEM scheme. eta = 0 and c = 1 is equivalent to the SAAF approach with no void treatment. Use with caution.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">saaf_eta</span><span class="moose-parameter-header-default">0.5</span><span class="moose-parameter-header-description">Stabilization parameter eta for the SAAF-CFEM scheme. eta = 0 and c = 1 is equivalent to the SAAF approach with no void treatment. Use with caution.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0.5</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Stabilization parameter eta for the SAAF-CFEM scheme. eta = 0 and c = 1 is equivalent to the SAAF approach with no void treatment. Use with caution.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">transport_system</span><span class="moose-parameter-header-description">Name of the transport system which will consume the provided material properties. If one is not provided the first transport system will be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the transport system which will consume the provided material properties. If one is not provided the first transport system will be used.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="64dfa723-181b-4670-b5e9-41eb7bea34c5" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="08e77df3-add9-47b7-83c7-6974d8cc255c" data-section-level="3" data-section-text="Outputs Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names where you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;OutputName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Vector of output names where you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section><section id="4d2dc6c5-4519-4118-9b6b-5c7b6f181e0b" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section><section class="scrollspy" id="95832afc-6d39-457a-a93c-949057d9474e" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#cb7f9463-d1a2-442f-bec5-9331c9437b4d">(examples/3D_kobayashi/kobayashi_3_no_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#7e373cf7-81bc-4de9-90b5-aa9987fac1ad">(examples/3D_ray_tracing/point_source_verification_shield.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#6d8f8a8a-1d4e-4cec-b8d4-3e85b95cfae2">(examples/3D_kobayashi/kobayashi_2.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#96112175-ef49-4af2-b056-6701bdf33e6a">(examples/3D_kobayashi/kobayashi_3_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#9bcb7c79-7efe-4bc7-8d70-89b48e82ca20">(examples/3D_kobayashi/kobayashi_2_no_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#9af2c0ee-10a5-4b4b-b799-536d6210a7b9">(examples/3D_kobayashi/kobayashi_2_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#c44617ff-29f2-4bdf-90aa-e5140402b79b">(examples/2D_scattering_2_group_cgfem/test.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#4013b219-3759-47ee-a01f-8434efea4a41">(tests/transport_system/saaf_cgfem/test_1D_scattering_steady.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#77ea2eb2-2e34-4cee-bb99-0ac09ffb7576">(examples/2D_watanabe_maynard_cfem/test.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#32eb2439-f85a-4fbc-af16-338b1c3629f9">(examples/3D_kobayashi/kobayashi_1_no_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#c9349452-a4c4-4a50-ba44-8ad538e57c7d">(examples/2D_source_cgfem/test.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#7d0dd2ee-77e1-4f5d-b188-70022fb885fe">(examples/3D_ray_tracing/point_source_verification_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#4cb6ab6d-fcff-402b-9ac3-e37181b61f28">(examples/2D_air_uvc_cgfem/test.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#da61590f-942b-43e8-a6d0-5a9ae1a596e6">(examples/3D_ray_tracing/point_source_verification_shield_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#eaef2141-1019-42a4-941c-82debef139f8">(examples/2D_rad_con/radiation_transient.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#5840ab81-22bd-4b2a-be49-8ea9457c6072">(examples/3D_ray_tracing/point_source_verification.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#4ceccb32-f5ce-48b8-913d-f9f9581188f0">(examples/3D_kobayashi/kobayashi_1.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#f760d123-638b-4f60-8c19-16e0ddfbc39c">(examples/3D_kobayashi/kobayashi_1_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#b909ea62-b3f6-4419-9140-13c6b0cca516">(examples/3D_kobayashi/kobayashi_3.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#6a0b2989-48f9-4530-8188-7a4349783dd6">(examples/2D_rad_con/radiation_steady.i)</a></li></ul></section></section><div class="moose-modal modal" id="cb7f9463-d1a2-442f-bec5-9331c9437b4d"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_3_no_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+<!DOCTYPE html><head><meta charset="UTF-8"><title>ConstantTransportMaterial | Gnat</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Gnat</a><a href="https://github.com/OTU-Center-for-SMRs/gnat" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="c1e190d5-7950-4cc4-a2eb-8fb6867a7f41" data-constrainWidth="false">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="8556ba69-385d-4f40-b28c-b226862cd1bd" data-constrainWidth="false">Theory and Implementation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="28f91cdb-ef51-4a84-ab41-a0b7775836de" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publications.html">Publications</a></li><li><a href="../../contact.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="a18342b6-42bd-4d72-881d-aed591f71625"><i class="material-icons">menu</i></a><ul class="sidenav" id="a18342b6-42bd-4d72-881d-aed591f71625"><li><a href="#!" class="dropdown-trigger" data-target="678579f4-cca7-4642-b752-44e2f3c1931e" data-constrainWidth="false">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="51fe0686-a2bc-4a38-80f7-71f2089b835f" data-constrainWidth="false">Theory and Implementation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="9a330626-4feb-4e3b-a1a9-5b1a4fc3160c" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publications.html">Publications</a></li><li><a href="../../contact.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="c1e190d5-7950-4cc4-a2eb-8fb6867a7f41"><li><a href="../../installation/index.html">Installation</a></li><li><a href="../../tutorials/index.html">Tutorials</a></li></ul><ul class="dropdown-content" id="8556ba69-385d-4f40-b28c-b226862cd1bd"><li><a href="../../about/radiation_transport.html">Radiation Transport</a></li><li><a href="../../about/mobile_depletion.html">Fluid Depletion</a></li><li><a href="../../about/implementation.html">Implementation</a></li></ul><ul class="dropdown-content" id="28f91cdb-ef51-4a84-ab41-a0b7775836de"><li><a href="../index.html">Gnat Source Pages</a></li><li><a href="https://mooseframework.inl.gov/source/index.html">MOOSE Source Pages</a></li></ul><ul class="dropdown-content" id="678579f4-cca7-4642-b752-44e2f3c1931e"><li><a href="../../installation/index.html">Installation</a></li><li><a href="../../tutorials/index.html">Tutorials</a></li></ul><ul class="dropdown-content" id="51fe0686-a2bc-4a38-80f7-71f2089b835f"><li><a href="../../about/radiation_transport.html">Radiation Transport</a></li><li><a href="../../about/mobile_depletion.html">Fluid Depletion</a></li><li><a href="../../about/implementation.html">Implementation</a></li></ul><ul class="dropdown-content" id="9a330626-4feb-4e3b-a1a9-5b1a4fc3160c"><li><a href="../index.html">Gnat Source Pages</a></li><li><a href="https://mooseframework.inl.gov/source/index.html">MOOSE Source Pages</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input type_="text" onkeyup="mooseSearch()" placeholder="/index.md" id="moose-search-box"></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">materials</span><a href="#" class="breadcrumb">ConstantTransportMaterial</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section id="7903cc9e-6a9d-4ab4-b1b9-87afc44787ba" data-section-level="1" data-section-text="ConstantTransportMaterial"><h1 id="constanttransportmaterial">ConstantTransportMaterial</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The ConstantTransportMaterial has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Provides the particle group velocity (<span class="moose-katex-inline-equation" id="moose-equation-51942280-0895-4f40-aedc-58f675e3e261"><script>var element = document.getElementById("moose-equation-51942280-0895-4f40-aedc-58f675e3e261");katex.render("v_{g}", element, {displayMode:false,throwOnError:false});</script></span>), particle group total cross-section (<span class="moose-katex-inline-equation" id="moose-equation-9224dd22-10c1-4884-90bc-4f1789612d56"><script>var element = document.getElementById("moose-equation-9224dd22-10c1-4884-90bc-4f1789612d56");katex.render("\\Sigma_{a,g}", element, {displayMode:false,throwOnError:false});</script></span>), and the scattering cross-section moments (<span class="moose-katex-inline-equation" id="moose-equation-d1e2f628-ee4e-46d5-ba50-90989e90c4ac"><script>var element = document.getElementById("moose-equation-d1e2f628-ee4e-46d5-ba50-90989e90c4ac");katex.render("\\Sigma_{s, g', g, l}", element, {displayMode:false,throwOnError:false});</script></span>) for transport problems. If no scattering cross-section moments are provided, the material initializes all moments to 0. The properties must be listed in decreasing order by energy.</p><section class="scrollspy" id="f4978fda-ab35-4316-b762-cfd4336c4ae5" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section class="scrollspy" id="a03b371b-6539-4cdf-b793-e7ab5d90e1f9" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section class="scrollspy" id="6c86c88e-fcf7-4cf5-b5ab-bae17b7da88c" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="5fe48175-1380-48c9-9d3c-75c62456d9b8" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">group_scattering</span><span class="moose-parameter-header-description">The group-to-group scattering cross-section moments for all energy groups.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The group-to-group scattering cross-section moments for all energy groups.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">group_total</span><span class="moose-parameter-header-description">The macroscopic particle total cross-sections for all energy groups.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The macroscopic particle total cross-sections for all energy groups.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="7dfd0101-990e-42d6-be61-65b9ed44c9a3" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">add_heating</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this material should provide fission heating cross-sections.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this material should provide fission heating cross-sections.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">anisotropy</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The scattering anisotropy of the medium.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The scattering anisotropy of the medium.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, ELEMENT, SUBDOMAIN</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">declare_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">group_fission_spectra</span><span class="moose-parameter-header-description">The neutron fission spectra.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The neutron fission spectra.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">group_production</span><span class="moose-parameter-header-description">The neutron production cross-sections (product of the fission cross-section and the neutron yield) for all neutron energy groups.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The neutron production cross-sections (product of the fission cross-section and the neutron yield) for all neutron energy groups.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">group_speeds</span><span class="moose-parameter-header-description">The particle speeds for all energy groups.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The particle speeds for all energy groups.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">has_fission</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not the transport system accounts for fission reactions.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not the transport system accounts for fission reactions.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">is_diffusion</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not the transport system is initializing a diffusion approximation scheme.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not the transport system is initializing a diffusion approximation scheme.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">is_saaf</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Whether or not the transport system is initializing a SAAF scheme.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not the transport system is initializing a SAAF scheme.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">num_groups</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The number of energy groups the energy spectrum is divided into.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The number of energy groups the energy spectrum is divided into.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">particle_type</span><span class="moose-parameter-header-default">neutron</span><span class="moose-parameter-header-description">The type of particle to be consuming material property data.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>neutron</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>neutron, photon</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The type of particle to be consuming material property data.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">saaf_c</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">Stabilization parameter c for the SAAF-CFEM scheme. eta = 0 and c = 1 is equivalent to the SAAF approach with no void treatment. Use with caution.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Stabilization parameter c for the SAAF-CFEM scheme. eta = 0 and c = 1 is equivalent to the SAAF approach with no void treatment. Use with caution.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">saaf_eta</span><span class="moose-parameter-header-default">0.5</span><span class="moose-parameter-header-description">Stabilization parameter eta for the SAAF-CFEM scheme. eta = 0 and c = 1 is equivalent to the SAAF approach with no void treatment. Use with caution.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0.5</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Stabilization parameter eta for the SAAF-CFEM scheme. eta = 0 and c = 1 is equivalent to the SAAF approach with no void treatment. Use with caution.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">transport_system</span><span class="moose-parameter-header-description">Name of the transport system which will consume the provided material properties. If one is not provided the first transport system will be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the transport system which will consume the provided material properties. If one is not provided the first transport system will be used.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="afabfc41-a71e-44b0-a90c-84397c30359d" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="d1c4ac1c-41c3-45bf-a3e4-566e461981d7" data-section-level="3" data-section-text="Outputs Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names where you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;OutputName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Vector of output names where you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section><section id="ac677ebc-3462-45a6-afcc-498b95d11365" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section><section class="scrollspy" id="8e2ab401-1619-4781-be57-ba146382fac6" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#2224140d-2933-4333-ae2e-641391b2611c">(examples/2D_air_uvc_cgfem/test.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#3a665513-586c-4456-9d0e-c83b9cfc0702">(examples/3D_ray_tracing/point_source_verification_shield_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#e8c78210-bd10-4e2b-9e2c-a94721354d67">(examples/3D_ray_tracing/point_source_verification_shield.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#6ebc2057-fdf9-4f7d-b0fa-705c4ef3dd37">(examples/3D_kobayashi/kobayashi_2.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#64c60b4a-b4ae-4567-a1ec-c2dc5d810d77">(examples/2D_rad_con/radiation_steady.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#af901467-3c86-443f-bf26-237d196f100c">(examples/2D_watanabe_maynard_cfem/test.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#182a1d5a-c068-4bae-84df-da67154eb937">(examples/2D_scattering_2_group_cgfem/test.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#dd9f02fb-7b20-4ffc-9bc8-1ea198e2a81d">(examples/3D_kobayashi/kobayashi_3_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#c5e1db80-7a89-423b-99ae-4d4b012c6b58">(examples/3D_ray_tracing/point_source_verification.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#f0bdf92c-2da9-485a-bb06-94dc072ea714">(examples/3D_kobayashi/kobayashi_1_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#789a187c-1d78-475f-ac6e-a2e670f5f8c2">(examples/3D_ray_tracing/point_source_verification_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#baccd4be-bde2-4bcd-8316-6ac43cab5e6c">(examples/3D_kobayashi/kobayashi_1_no_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#001263ba-9466-4f21-bb85-4c686d944c43">(examples/3D_kobayashi/kobayashi_1.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#8f413046-fc29-4d6f-b635-d2050c9a31f3">(examples/2D_source_cgfem/test.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#041bb58e-04b0-4095-9c07-b44a208cbaeb">(examples/3D_kobayashi/kobayashi_3.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#7ad2b259-fe83-4ffb-80c6-b865f6767af4">(examples/3D_kobayashi/kobayashi_3_no_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#bbe42c90-018f-4c0a-b632-ee3cc4f5e9f1">(examples/3D_kobayashi/kobayashi_2_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#ce9f112f-94fb-43d3-832a-9c656e27729e">(examples/3D_kobayashi/kobayashi_2_no_rt.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#5332e1f1-854b-4b00-8e47-185fe5163cee">(examples/2D_rad_con/radiation_transient.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#3b9cd6f9-85f7-47c1-bbcd-9f4ba994c965">(tests/transport_system/saaf_cgfem/test_1D_scattering_steady.i)</a></li></ul></section></section><div class="moose-modal modal" id="2224140d-2933-4333-ae2e-641391b2611c"><div class="modal-content"><h4>(examples/2D_air_uvc_cgfem/test.i)</h4><pre class="moose-pre"><code class="language-moose"># Simulating the 222 nm radiation fields caused by a
+# far UV-C lamp in the corner of a room in air. The lamp is modelled as a point source.
+
+[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 2
+    dx = 300.0
+    dy = 300.0
+    ix = 101
+    iy = 101
+  []
+[]
+
+[TransportSystems]
+  [UVC]
+    num_groups = 1
+    scheme = saaf_cfem
+    particle_type = photon
+
+    order = FIRST
+    family = LAGRANGE
+
+    n_azimuthal = 18
+    n_polar = 18
+
+    max_anisotropy = 0
+    vacuum_boundaries = &#x27;left right top bottom&#x27;
+
+    point_source_locations = &#x27;298.0 298.0 0.0&#x27;
+    point_source_moments = &#x27;0.027646015&#x27;
+    point_source_anisotropies = &#x27;0&#x27;
+    scale_sources = true
+  []
+[]
+
+[TransportMaterials]
+  [Domain]
+    type = ConstantTransportMaterial
+    transport_system = UVC
+    group_total = 0.0000329
+    group_scattering = 4.6e-6
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+  petsc_options_iname = &#x27;-ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27; 600&#x27;
+
+  l_max_its = 50
+  nl_abs_tol = 1e-12
+
+  automatic_scaling = true
+  off_diagonals_in_auto_scaling = true
+  compute_scaling_once = false
+[]
+
+[Outputs]
+  exodus = true
+  execute_on = &#x27;TIMESTEP_END&#x27;
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="3a665513-586c-4456-9d0e-c83b9cfc0702"><div class="modal-content"><h4>(examples/3D_ray_tracing/point_source_verification_shield_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;0.9 0.2 0.9&#x27;
+    dy = &#x27;0.9 0.2 0.9&#x27;
+    dz = &#x27;0.9 0.2 0.9&#x27;
+    ix = &#x27;9 2 9&#x27;
+    iy = &#x27;9 2 9&#x27;
+    iz = &#x27;9 2 9&#x27;
+    subdomain_id = &#x27;
+    0 0 0
+    0 0 0
+    0 0 0
+
+    0 0 0
+    0 1 0
+    0 0 0
+
+    0 0 0
+    0 0 0
+    0 0 0&#x27;
+  []
+  uniform_refine = 3
+[]
+
+[UncollidedFlux]
+  [Neutron]
+    uncollided_flux_treatment = ray-tracing
+    num_groups = 1
+    max_anisotropy = 0
+
+    point_source_locations = &#x27;1.0 1.0 1.0&#x27;
+    point_source_moments = &#x27;1.0&#x27;
+    point_source_anisotropies = &#x27;0&#x27;
+  []
+[]
+
+[TransportMaterials]
+  [Shield]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;1e-2&#x27;
+    group_scattering = &#x27;0.0&#x27;
+    anisotropy = 0
+    block = &#x27;0 1&#x27;
+  []
+[]
+
+[Problem]
+  type = FEProblem
+  solve = false
+  kernel_coverage_check = false
+[]
+
+[Executioner]
+  type = Steady
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="e8c78210-bd10-4e2b-9e2c-a94721354d67"><div class="modal-content"><h4>(examples/3D_ray_tracing/point_source_verification_shield.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;0.9 0.2 0.9&#x27;
+    dy = &#x27;0.9 0.2 0.9&#x27;
+    dz = &#x27;0.9 0.2 0.9&#x27;
+    ix = &#x27;9 2 9&#x27;
+    iy = &#x27;9 2 9&#x27;
+    iz = &#x27;9 2 9&#x27;
+    subdomain_id = &#x27;
+    0 0 0
+    0 0 0
+    0 0 0
+
+    0 0 0
+    0 1 0
+    0 0 0
+
+    0 0 0
+    0 0 0
+    0 0 0&#x27;
+  []
+  uniform_refine = 2
+[]
+
+[TransportSystems]
+  [Neutron]
+    num_groups = 1
+    max_anisotropy = 0
+    scheme = saaf_cfem
+    particle_type = neutron
+
+    order = FIRST
+    family = LAGRANGE
+
+    n_azimuthal = 1
+    n_polar = 1
+
+    vacuum_boundaries = &#x27;left right top bottom&#x27;
+
+    uncollided_from_multi_app = &#x27;Uncollided&#x27;
+  []
+[]
+
+[TransportMaterials]
+  [Shield]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;1e-2&#x27;
+    group_scattering = &#x27;0.0&#x27;
+    anisotropy = 0
+    block = &#x27;0 1&#x27;
+  []
+[]
+
+[Functions]
+  [Analytical]
+    type = ParsedFunction
+    expression = &#x27;exp(-1e-2 * sqrt((x - 1) * (x - 1) + (y - 1) * (y - 1) + (z - 1) * (z - 1))) / (4.0 * pi * ((x - 1) * (x - 1) + (y - 1) * (y - 1) + (z - 1) * (z - 1)))&#x27;
+  []
+[]
+
+[Postprocessors]
+  [Error]
+    type = ElementL2Error
+    function = Analytical
+    variable = flux_moment_1_0_0
+    block = &#x27;0&#x27;
+  []
+  [h]
+    type = AverageElementSize
+    block = &#x27;0&#x27;
+  []
+[]
+
+[Problem]
+  solve = false
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+[]
+
+[Outputs]
+  exodus = true
+[]
+
+[MultiApps]
+  [Uncollided]
+    type = FullSolveMultiApp
+    app_type = GnatApp
+    input_files = &#x27;point_source_verification_shield_rt.i&#x27;
+    execute_on = INITIAL
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="6ebc2057-fdf9-4f7d-b0fa-705c4ef3dd37"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_2.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;10 50&#x27;
+    dy = &#x27;10 90&#x27;
+    dz = &#x27;10 50&#x27;
+    ix = &#x27;1 5&#x27;
+    iy = &#x27;1 9&#x27;
+    iz = &#x27;1 5&#x27;
+    subdomain_id = &#x27;
+    2 1
+    0 1
+
+    1 1
+    1 1&#x27;
+  []
+  uniform_refine = 1
+[]
+
+[TransportSystems]
+  [Neutron]
+    num_groups = 1
+    max_anisotropy = 0
+    scheme = saaf_cfem
+    particle_type = neutron
+
+    order = FIRST
+    family = LAGRANGE
+
+    n_azimuthal = 5
+    n_polar = 5
+
+    vacuum_boundaries = &#x27;right top front&#x27;
+    reflective_boundaries = &#x27;back bottom left&#x27;
+
+    uncollided_from_multi_app = &#x27;Uncollided&#x27;
+  []
+[]
+
+[TransportMaterials]
+  [Shield]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;0.1&#x27;
+    group_scattering = &#x27;0.05&#x27;
+    anisotropy = 0
+    block = &#x27;1 2&#x27;
+  []
+  [Duct]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;1e-4&#x27;
+    group_scattering = &#x27;0.5e-4&#x27;
+    anisotropy = 0
+    block = &#x27;0&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27; hypre    boomeramg      100&#x27;
+  l_max_its = 50
+  nl_rel_tol = 1e-12
+
+  automatic_scaling = true
+  off_diagonals_in_auto_scaling = true
+  compute_scaling_once = false
+[]
+
+[MultiApps]
+  [Uncollided]
+    type = FullSolveMultiApp
+    app_type = GnatApp
+    input_files = &#x27;kobayashi_2_rt.i&#x27;
+    execute_on = INITIAL
+  []
+[]
+
+[Outputs]
+  exodus = true
+  execute_on = &#x27;TIMESTEP_END&#x27;
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="64c60b4a-b4ae-4567-a1ec-c2dc5d810d77"><div class="modal-content"><h4>(examples/2D_rad_con/radiation_steady.i)</h4><pre class="moose-pre"><code class="language-moose"># Mesh is in cm, need to convert all units to cm.
+[Mesh]
+  [Domain]
+    type = FileMeshGenerator
+    file = Radiation_Mesh.e
+  []
+[]
+
+[TransportSystems]
+  [Photon]
+    scheme = saaf_cfem
+    particle_type = photon
+
+    flux_moment_names = &#x27;Flux_Moment&#x27;
+    family = LAGRANGE
+    order = FIRST
+
+    num_groups = 1
+    max_anisotropy = 0
+    n_azimuthal = 7
+    n_polar = 7
+
+    vacuum_boundaries = vacuum
+
+    field_source_blocks = air
+    field_source_moments = &#x27;photon_source_g_0&#x27;
+    field_source_anisotropies = &#x27;0&#x27;
+    field_source_scaling = &#x27;1e5&#x27;
+    scale_sources = true
+  []
+[]
+
+[TransportMaterials]
+  [Air]
+    type = ConstantTransportMaterial
+    transport_system = Photon
+    group_total = 3.29e-5
+    group_scattering = &#x27;4.6e-6&#x27;
+    anisotropy = 0
+  []
+[]
+
+[AuxVariables]
+  [photon_source_g_0]
+    type = MooseVariable
+    family = MONOMIAL
+    order = CONSTANT
+  []
+[]
+
+[Transfers]
+  [G0]
+    type = MultiAppGeneralFieldShapeEvaluationTransfer
+    from_multi_app = Tracer
+    variable = photon_source_g_0
+    source_variable = photon_source_g_0
+  []
+[]
+
+[MultiApps]
+  [Tracer]
+    type = FullSolveMultiApp
+    app_type = GnatApp
+    execute_on = TIMESTEP_BEGIN
+    input_files = tracer_steady.i
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+
+  petsc_options_iname = &#x27;-ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27; 600&#x27;
+
+  l_max_its = 50
+  nl_abs_tol = 1e-12
+
+  automatic_scaling = true
+  off_diagonals_in_auto_scaling = true
+  compute_scaling_once = false
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="af901467-3c86-443f-bf26-237d196f100c"><div class="modal-content"><h4>(examples/2D_watanabe_maynard_cfem/test.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 2
+    dx = &#x27;5.0 3.75 2.5 3.75 5.0&#x27;
+    dy = &#x27;5.0 3.75 2.5 3.75 5.0&#x27;
+    ix = &#x27;8 6 4 6 8&#x27;
+    iy = &#x27;8 6 4 6 8&#x27;
+    subdomain_id = &#x27;
+    3 3 3 3 3
+    3 2 2 2 3
+    3 2 1 2 3
+    3 2 2 2 3
+    3 3 3 3 3&#x27;
+  []
+  uniform_refine = 2
+[]
+
+[TransportSystems]
+  [Neutron]
+    num_groups = 1
+    max_anisotropy = 0
+    scheme = saaf_cfem
+    particle_type = neutron
+
+    order = FIRST
+    family = LAGRANGE
+
+    n_azimuthal = 7
+    n_polar = 7
+
+    vacuum_boundaries = &#x27;left right top bottom&#x27;
+
+    volumetric_source_blocks = &#x27;1&#x27;
+    volumetric_source_moments = &#x27;6.4&#x27;
+    volumetric_source_anisotropies = &#x27;0&#x27;
+    scale_sources = true
+  []
+[]
+
+[TransportMaterials]
+  [Void]
+    type = ConstantTransportMaterial
+    transport_system = Neutron
+    group_total = &#x27;2.0e-10&#x27;
+    group_scattering = &#x27;1.9e-10&#x27;
+    block = &#x27;2&#x27;
+  []
+  [Other]
+    type = ConstantTransportMaterial
+    transport_system = Neutron
+    group_total = &#x27;0.2&#x27;
+    group_scattering = &#x27;0.19&#x27;
+    block = &#x27;1 3&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+  petsc_options_iname = &#x27;-ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27; 300&#x27;
+
+  l_max_its = 50
+  nl_rel_tol = 1e-12
+
+  automatic_scaling = true
+  off_diagonals_in_auto_scaling = true
+  compute_scaling_once = false
+[]
+
+[Outputs]
+  exodus = true
+  execute_on = &#x27;TIMESTEP_END&#x27;
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="182a1d5a-c068-4bae-84df-da67154eb937"><div class="modal-content"><h4>(examples/2D_scattering_2_group_cgfem/test.i)</h4><pre class="moose-pre"><code class="language-moose"># A simple test case with a purely absorbing medium and a point source in the
+# middle of the domain.
+
+[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 2
+    dx = 10
+    dy = 10
+    ix = 101
+    iy = 101
+  []
+[]
+
+[TransportSystems]
+  [Neutron]
+    num_groups = 2
+    max_anisotropy = 0
+    scheme = saaf_cfem
+    particle_type = neutron
+    output_angular_fluxes = false
+
+    order = FIRST
+    family = LAGRANGE
+
+    n_azimuthal = 2
+    n_polar = 2
+
+    vacuum_boundaries = &#x27;left right top bottom&#x27;
+
+    point_source_locations = &#x27;5.0 5.0 0.0&#x27;
+    point_source_moments = &#x27;1e3 0.0&#x27;
+    point_source_anisotropies = &#x27;0&#x27;
+    scale_sources = true
+  []
+[]
+
+[TransportMaterials]
+  [Domain]
+    type = ConstantTransportMaterial
+    transport_system = Neutron
+    anisotropy = 0
+    group_total = &#x27;1.1 1.0&#x27;
+    group_scattering = &#x27;0.5 0.5 0.0 1.0&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27; hypre    boomeramg      10&#x27;
+  l_max_its = 50
+  nl_rel_tol = 1e-12
+[]
+
+[Outputs]
+  exodus = true
+  execute_on = &#x27;TIMESTEP_END&#x27;
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="dd9f02fb-7b20-4ffc-9bc8-1ea198e2a81d"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_3_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;10 20 10 20&#x27;
+    dy = &#x27;10 40 10 40&#x27;
+    dz = &#x27;10 20 10 20&#x27;
+    ix = &#x27;1 2 1 2&#x27;
+    iy = &#x27;1 4 1 4&#x27;
+    iz = &#x27;1 2 1 2&#x27;
+    subdomain_id = &#x27;
+    2 1 1 1
+    0 1 1 1
+    0 0 0 1
+    1 1 1 1
+
+    1 1 1 1
+    1 1 1 1
+    1 1 0 1
+    1 1 1 1
+
+    1 1 1 1
+    1 1 1 1
+    1 1 0 1
+    1 1 0 1
+
+    1 1 1 1
+    1 1 1 1
+    1 1 1 1
+    1 1 1 1&#x27;
+  []
+  uniform_refine = 2
+[]
+
+[UncollidedFlux]
+  [Neutron]
+    uncollided_flux_treatment = ray-tracing
+    num_groups = 1
+    max_anisotropy = 0
+
+    volumetric_source_blocks = &#x27;2&#x27;
+    volumetric_source_moments = &#x27;1.0&#x27;
+    volumetric_source_anisotropies = &#x27;0&#x27;
+
+    rt_n_polar = 5
+    rt_n_azimuthal = 5
+  []
+[]
+
+[TransportMaterials]
+  [Shield]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;0.1&#x27;
+    group_scattering = &#x27;0.05&#x27;
+    anisotropy = 0
+    block = &#x27;1 2&#x27;
+  []
+  [Duct]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;1.0e-4&#x27;
+    group_scattering = &#x27;0.5e-4&#x27;
+    anisotropy = 0
+    block = &#x27;0&#x27;
+  []
+[]
+
+[Problem]
+  type = FEProblem
+  solve = false
+  kernel_coverage_check = false
+[]
+
+[Executioner]
+  type = Steady
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="c5e1db80-7a89-423b-99ae-4d4b012c6b58"><div class="modal-content"><h4>(examples/3D_ray_tracing/point_source_verification.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;0.5 1.0 0.5&#x27;
+    dy = &#x27;0.5 1.0 0.5&#x27;
+    dz = &#x27;0.5 1.0 0.5&#x27;
+    ix = &#x27;5 10 5&#x27;
+    iy = &#x27;5 10 5&#x27;
+    iz = &#x27;5 10 5&#x27;
+    subdomain_id = &#x27;
+    0 0 0
+    0 0 0
+    0 0 0
+
+    0 0 0
+    0 1 0
+    0 0 0
+
+    0 0 0
+    0 0 0
+    0 0 0&#x27;
+  []
+  uniform_refine = 2
+[]
+
+[TransportSystems]
+  [Neutron]
+    num_groups = 1
+    max_anisotropy = 0
+    scheme = saaf_cfem
+    particle_type = neutron
+
+    order = FIRST
+    family = LAGRANGE
+
+    n_azimuthal = 1
+    n_polar = 1
+
+    vacuum_boundaries = &#x27;left right top bottom&#x27;
+
+    uncollided_from_multi_app = &#x27;Uncollided&#x27;
+  []
+[]
+
+[TransportMaterials]
+  [Duct]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;0.0&#x27;
+    group_scattering = &#x27;0.0&#x27;
+    anisotropy = 0
+    block = &#x27;0 1&#x27;
+  []
+[]
+
+[Functions]
+  [Analytical]
+    type = ParsedFunction
+    expression = &#x27;1.0 / (4.0 * pi * ((x - 1) * (x - 1) + (y - 1) * (y - 1) + (z - 1) * (z - 1)))&#x27;
+  []
+[]
+
+[Postprocessors]
+  [Error]
+    type = ElementL2Error
+    function = Analytical
+    variable = flux_moment_1_0_0
+    block = &#x27;0&#x27;
+  []
+  [h]
+    type = AverageElementSize
+    block = &#x27;0&#x27;
+  []
+[]
+
+[Problem]
+  type = FEProblem
+  solve = false
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+[]
+
+[Outputs]
+  exodus = true
+[]
+
+[MultiApps]
+  [Uncollided]
+    type = FullSolveMultiApp
+    app_type = GnatApp
+    input_files = &#x27;point_source_verification_rt.i&#x27;
+    execute_on = INITIAL
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="f0bdf92c-2da9-485a-bb06-94dc072ea714"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_1_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;10 40 50&#x27;
+    dy = &#x27;10 40 50&#x27;
+    dz = &#x27;10 40 50&#x27;
+    ix = &#x27;1 4 5&#x27;
+    iy = &#x27;1 4 5&#x27;
+    iz = &#x27;1 4 5&#x27;
+    subdomain_id = &#x27;
+    2 0 1
+    0 0 1
+    1 1 1
+
+    0 0 1
+    0 0 1
+    1 1 1
+
+    1 1 1
+    1 1 1
+    1 1 1&#x27;
+  []
+  uniform_refine = 2
+[]
+
+[UncollidedFlux]
+  [Neutron]
+    uncollided_flux_treatment = ray-tracing
+    num_groups = 1
+    max_anisotropy = 0
+
+    volumetric_source_blocks = &#x27;2&#x27;
+    volumetric_source_moments = &#x27;1.0&#x27;
+    volumetric_source_anisotropies = &#x27;0&#x27;
+
+    rt_n_polar = 5
+    rt_n_azimuthal = 5
+  []
+[]
+
+[TransportMaterials]
+  [Shield]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;0.1&#x27;
+    group_scattering = &#x27;0.05&#x27;
+    anisotropy = 0
+    block = &#x27;1 2&#x27;
+  []
+  [Duct]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;1e-4&#x27;
+    group_scattering = &#x27;0.5e-4&#x27;
+    anisotropy = 0
+    block = &#x27;0&#x27;
+  []
+[]
+
+[Problem]
+  type = FEProblem
+  solve = false
+  kernel_coverage_check = false
+[]
+
+[Executioner]
+  type = Steady
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="789a187c-1d78-475f-ac6e-a2e670f5f8c2"><div class="modal-content"><h4>(examples/3D_ray_tracing/point_source_verification_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;0.5 1.0 0.5&#x27;
+    dy = &#x27;0.5 1.0 0.5&#x27;
+    dz = &#x27;0.5 1.0 0.5&#x27;
+    ix = &#x27;5 10 5&#x27;
+    iy = &#x27;5 10 5&#x27;
+    iz = &#x27;5 10 5&#x27;
+    subdomain_id = &#x27;
+    0 0 0
+    0 0 0
+    0 0 0
+
+    0 0 0
+    0 1 0
+    0 0 0
+
+    0 0 0
+    0 0 0
+    0 0 0&#x27;
+  []
+  uniform_refine = 3
+[]
+
+[UncollidedFlux]
+  [Neutron]
+    uncollided_flux_treatment = ray-tracing
+    num_groups = 1
+    max_anisotropy = 0
+
+    point_source_locations = &#x27;1.0 1.0 1.0&#x27;
+    point_source_moments = &#x27;1.0&#x27;
+    point_source_anisotropies = &#x27;0&#x27;
+  []
+[]
+
+[TransportMaterials]
+  [Duct]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;0.0&#x27;
+    group_scattering = &#x27;0.0&#x27;
+    anisotropy = 0
+    block = &#x27;0 1&#x27;
+  []
+[]
+
+[Functions]
+  [Analytical]
+    type = ParsedFunction
+    expression = &#x27;1.0 / (4.0 * pi * ((x - 1) * (x - 1) + (y - 1) * (y - 1) + (z - 1) * (z - 1)))&#x27;
+  []
+[]
+
+[Postprocessors]
+  [Error]
+    type = ElementL2Error
+    function = Analytical
+    variable = uncollided_flux_moment_1_0_0
+    block = &#x27;0&#x27;
+  []
+  [h]
+    type = AverageElementSize
+    block = &#x27;0&#x27;
+  []
+[]
+
+[Problem]
+  type = FEProblem
+  solve = false
+  kernel_coverage_check = false
+[]
+
+[Executioner]
+  type = Steady
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="baccd4be-bde2-4bcd-8316-6ac43cab5e6c"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_1_no_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;10 40 50&#x27;
+    dy = &#x27;10 40 50&#x27;
+    dz = &#x27;10 40 50&#x27;
+    ix = &#x27;1 4 5&#x27;
+    iy = &#x27;1 4 5&#x27;
+    iz = &#x27;1 4 5&#x27;
+    subdomain_id = &#x27;
+    2 0 1
+    0 0 1
+    1 1 1
+
+    0 0 1
+    0 0 1
+    1 1 1
+
+    1 1 1
+    1 1 1
+    1 1 1&#x27;
+  []
+  uniform_refine = 2
+[]
+
+[TransportSystems]
+  [Neutron]
+    num_groups = 1
+    max_anisotropy = 0
+    scheme = saaf_cfem
+    particle_type = neutron
+
+    order = FIRST
+    family = LAGRANGE
+
+    n_azimuthal = 5
+    n_polar = 5
+
+    vacuum_boundaries = &#x27;right top front&#x27;
+    reflective_boundaries = &#x27;back bottom left&#x27;
+
+    volumetric_source_blocks = &#x27;2&#x27;
+    volumetric_source_moments = &#x27;1.0&#x27;
+    volumetric_source_anisotropies = &#x27;0&#x27;
+  []
+[]
+
+[TransportMaterials]
+  [Shield]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;0.1&#x27;
+    group_scattering = &#x27;0.05&#x27;
+    anisotropy = 0
+    block = &#x27;1 2&#x27;
+  []
+  [Duct]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;1e-4&#x27;
+    group_scattering = &#x27;0.5e-4&#x27;
+    anisotropy = 0
+    block = &#x27;0&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27; hypre    boomeramg      30&#x27;
+  l_max_its = 50
+  nl_rel_tol = 1e-12
+[]
+
+[Outputs]
+  exodus = true
+  execute_on = &#x27;TIMESTEP_END&#x27;
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="001263ba-9466-4f21-bb85-4c686d944c43"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_1.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;10 40 50&#x27;
+    dy = &#x27;10 40 50&#x27;
+    dz = &#x27;10 40 50&#x27;
+    ix = &#x27;1 4 5&#x27;
+    iy = &#x27;1 4 5&#x27;
+    iz = &#x27;1 4 5&#x27;
+    subdomain_id = &#x27;
+    2 0 1
+    0 0 1
+    1 1 1
+
+    0 0 1
+    0 0 1
+    1 1 1
+
+    1 1 1
+    1 1 1
+    1 1 1&#x27;
+  []
+  uniform_refine = 1
+[]
+
+[TransportSystems]
+  [Neutron]
+    num_groups = 1
+    max_anisotropy = 0
+    scheme = saaf_cfem
+    particle_type = neutron
+
+    order = FIRST
+    family = LAGRANGE
+
+    n_azimuthal = 5
+    n_polar = 5
+
+    vacuum_boundaries = &#x27;right top front&#x27;
+    reflective_boundaries = &#x27;back bottom left&#x27;
+
+    uncollided_from_multi_app = &#x27;Uncollided&#x27;
+  []
+[]
+
+[TransportMaterials]
+  [Shield]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;0.1&#x27;
+    group_scattering = &#x27;0.05&#x27;
+    anisotropy = 0
+    block = &#x27;1 2&#x27;
+  []
+  [Duct]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;1e-4&#x27;
+    group_scattering = &#x27;0.5e-4&#x27;
+    anisotropy = 0
+    block = &#x27;0&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+  #petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
+  #petsc_options_value = &#x27; hypre    boomeramg      100&#x27;
+  l_max_its = 50
+  nl_rel_tol = 1e-12
+
+  automatic_scaling = true
+  off_diagonals_in_auto_scaling = true
+  compute_scaling_once = false
+[]
+
+[MultiApps]
+  [Uncollided]
+    type = FullSolveMultiApp
+    app_type = GnatApp
+    input_files = &#x27;kobayashi_1_rt.i&#x27;
+    execute_on = INITIAL
+  []
+[]
+
+[Outputs]
+  exodus = true
+  execute_on = &#x27;TIMESTEP_END&#x27;
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="8f413046-fc29-4d6f-b635-d2050c9a31f3"><div class="modal-content"><h4>(examples/2D_source_cgfem/test.i)</h4><pre class="moose-pre"><code class="language-moose"># A simple test case with a purely absorbing medium and a point source in the
+# middle of the domain.
+
+[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 2
+    dx = &#x27;4 20 20&#x27;
+    dy = &#x27;4 20 20&#x27;
+    ix = &#x27;4 20 20&#x27;
+    iy = &#x27;4 20 20&#x27;
+    subdomain_id = &#x27;
+      2 1 1
+      1 1 1
+      1 1 1&#x27;
+  []
+[]
+
+[TransportSystems]
+  [Neutron]
+    scheme = saaf_cfem
+    particle_type = neutron
+    num_groups = 1
+    max_anisotropy = 0
+
+    order = FIRST
+    family = LAGRANGE
+
+    n_azimuthal = 20
+    n_polar = 20
+
+    volumetric_source_blocks = &#x27;2&#x27;
+    volumetric_source_moments = &#x27;1e0&#x27;
+    volumetric_source_anisotropies = &#x27;0&#x27;
+    scale_sources = true
+
+    vacuum_boundaries = &#x27;left right top bottom&#x27;
+  []
+[]
+
+[TransportMaterials]
+  [Domain]
+    type = ConstantTransportMaterial
+    transport_system = Neutron
+    group_total = &#x27;1.1e-6&#x27;
+    group_scattering = &#x27;1e-6&#x27;
+    block = &#x27;1 2&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+  #petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
+  #petsc_options_value = &#x27; hypre    boomeramg      600&#x27;
+  petsc_options_iname = &#x27;-ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27; 600&#x27;
+  l_max_its = 50
+  nl_rel_tol = 1e-12
+[]
+
+[Outputs]
+  exodus = true
+  execute_on = &#x27;TIMESTEP_END&#x27;
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="041bb58e-04b0-4095-9c07-b44a208cbaeb"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_3.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+  [domain]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;10 20 10 20&#x27;
+    dy = &#x27;10 40 10 40&#x27;
+    dz = &#x27;10 20 10 20&#x27;
+    ix = &#x27;1 2 1 2&#x27;
+    iy = &#x27;1 4 1 4&#x27;
+    iz = &#x27;1 2 1 2&#x27;
+    subdomain_id = &#x27;
+    2 1 1 1
+    0 1 1 1
+    0 0 0 1
+    1 1 1 1
+
+    1 1 1 1
+    1 1 1 1
+    1 1 0 1
+    1 1 1 1
+
+    1 1 1 1
+    1 1 1 1
+    1 1 0 1
+    1 1 0 1
+
+    1 1 1 1
+    1 1 1 1
+    1 1 1 1
+    1 1 1 1&#x27;
+  []
+  uniform_refine = 1
+[]
+
+[TransportSystems]
+  [Neutron]
+    num_groups = 1
+    max_anisotropy = 0
+    scheme = saaf_cfem
+    particle_type = neutron
+
+    order = FIRST
+    family = LAGRANGE
+
+    n_azimuthal = 5
+    n_polar = 5
+
+    vacuum_boundaries = &#x27;right top front&#x27;
+    reflective_boundaries = &#x27;back bottom left&#x27;
+
+    uncollided_from_multi_app = &#x27;Uncollided&#x27;
+  []
+[]
+
+[TransportMaterials]
+  [Shield]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;0.1&#x27;
+    group_scattering = &#x27;0.05&#x27;
+    anisotropy = 0
+    block = &#x27;1 2&#x27;
+  []
+  [Duct]
+    type = ConstantTransportMaterial
+    transport_system = &#x27;Neutron&#x27;
+    group_total = &#x27;1.0e-4&#x27;
+    group_scattering = &#x27;0.5e-4&#x27;
+    anisotropy = 0
+    block = &#x27;0&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27; hypre    boomeramg      100&#x27;
+  l_max_its = 50
+  nl_rel_tol = 1e-12
+
+  automatic_scaling = true
+  off_diagonals_in_auto_scaling = true
+  compute_scaling_once = false
+[]
+
+[MultiApps]
+  [Uncollided]
+    type = FullSolveMultiApp
+    app_type = GnatApp
+    input_files = &#x27;kobayashi_3_rt.i&#x27;
+    execute_on = INITIAL
+  []
+[]
+
+[Outputs]
+  exodus = true
+  execute_on = TIMESTEP_END
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="7ad2b259-fe83-4ffb-80c6-b865f6767af4"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_3_no_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
   [domain]
     type = CartesianMeshGenerator
     dim = 3
@@ -118,104 +1315,7 @@
   exodus = true
   execute_on = TIMESTEP_END
 []
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="7e373cf7-81bc-4de9-90b5-aa9987fac1ad"><div class="modal-content"><h4>(examples/3D_ray_tracing/point_source_verification_shield.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 3
-    dx = &#x27;0.9 0.2 0.9&#x27;
-    dy = &#x27;0.9 0.2 0.9&#x27;
-    dz = &#x27;0.9 0.2 0.9&#x27;
-    ix = &#x27;9 2 9&#x27;
-    iy = &#x27;9 2 9&#x27;
-    iz = &#x27;9 2 9&#x27;
-    subdomain_id = &#x27;
-    0 0 0
-    0 0 0
-    0 0 0
-
-    0 0 0
-    0 1 0
-    0 0 0
-
-    0 0 0
-    0 0 0
-    0 0 0&#x27;
-  []
-  uniform_refine = 2
-[]
-
-[TransportSystems]
-  [Neutron]
-    num_groups = 1
-    max_anisotropy = 0
-    scheme = saaf_cfem
-    particle_type = neutron
-
-    order = FIRST
-    family = LAGRANGE
-
-    n_azimuthal = 1
-    n_polar = 1
-
-    vacuum_boundaries = &#x27;left right top bottom&#x27;
-
-    uncollided_from_multi_app = &#x27;Uncollided&#x27;
-  []
-[]
-
-[TransportMaterials]
-  [Shield]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;1e-2&#x27;
-    group_scattering = &#x27;0.0&#x27;
-    anisotropy = 0
-    block = &#x27;0 1&#x27;
-  []
-[]
-
-[Functions]
-  [Analytical]
-    type = ParsedFunction
-    expression = &#x27;exp(-1e-2 * sqrt((x - 1) * (x - 1) + (y - 1) * (y - 1) + (z - 1) * (z - 1))) / (4.0 * pi * ((x - 1) * (x - 1) + (y - 1) * (y - 1) + (z - 1) * (z - 1)))&#x27;
-  []
-[]
-
-[Postprocessors]
-  [Error]
-    type = ElementL2Error
-    function = Analytical
-    variable = flux_moment_1_0_0
-    block = &#x27;0&#x27;
-  []
-  [h]
-    type = AverageElementSize
-    block = &#x27;0&#x27;
-  []
-[]
-
-[Problem]
-  solve = false
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
-[]
-
-[Outputs]
-  exodus = true
-[]
-
-[MultiApps]
-  [Uncollided]
-    type = FullSolveMultiApp
-    app_type = GnatApp
-    input_files = &#x27;point_source_verification_shield_rt.i&#x27;
-    execute_on = INITIAL
-  []
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="6d8f8a8a-1d4e-4cec-b8d4-3e85b95cfae2"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_2.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="bbe42c90-018f-4c0a-b632-ee3cc4f5e9f1"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_2_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
   [domain]
     type = CartesianMeshGenerator
     dim = 3
@@ -231,105 +1331,6 @@
 
     1 1
     1 1&#x27;
-  []
-  uniform_refine = 1
-[]
-
-[TransportSystems]
-  [Neutron]
-    num_groups = 1
-    max_anisotropy = 0
-    scheme = saaf_cfem
-    particle_type = neutron
-
-    order = FIRST
-    family = LAGRANGE
-
-    n_azimuthal = 5
-    n_polar = 5
-
-    vacuum_boundaries = &#x27;right top front&#x27;
-    reflective_boundaries = &#x27;back bottom left&#x27;
-
-    uncollided_from_multi_app = &#x27;Uncollided&#x27;
-  []
-[]
-
-[TransportMaterials]
-  [Shield]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;0.1&#x27;
-    group_scattering = &#x27;0.05&#x27;
-    anisotropy = 0
-    block = &#x27;1 2&#x27;
-  []
-  [Duct]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;1e-4&#x27;
-    group_scattering = &#x27;0.5e-4&#x27;
-    anisotropy = 0
-    block = &#x27;0&#x27;
-  []
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
-  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
-  petsc_options_value = &#x27; hypre    boomeramg      100&#x27;
-  l_max_its = 50
-  nl_rel_tol = 1e-12
-
-  automatic_scaling = true
-  off_diagonals_in_auto_scaling = true
-  compute_scaling_once = false
-[]
-
-[MultiApps]
-  [Uncollided]
-    type = FullSolveMultiApp
-    app_type = GnatApp
-    input_files = &#x27;kobayashi_2_rt.i&#x27;
-    execute_on = INITIAL
-  []
-[]
-
-[Outputs]
-  exodus = true
-  execute_on = &#x27;TIMESTEP_END&#x27;
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="96112175-ef49-4af2-b056-6701bdf33e6a"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_3_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 3
-    dx = &#x27;10 20 10 20&#x27;
-    dy = &#x27;10 40 10 40&#x27;
-    dz = &#x27;10 20 10 20&#x27;
-    ix = &#x27;1 2 1 2&#x27;
-    iy = &#x27;1 4 1 4&#x27;
-    iz = &#x27;1 2 1 2&#x27;
-    subdomain_id = &#x27;
-    2 1 1 1
-    0 1 1 1
-    0 0 0 1
-    1 1 1 1
-
-    1 1 1 1
-    1 1 1 1
-    1 1 0 1
-    1 1 1 1
-
-    1 1 1 1
-    1 1 1 1
-    1 1 0 1
-    1 1 0 1
-
-    1 1 1 1
-    1 1 1 1
-    1 1 1 1
-    1 1 1 1&#x27;
   []
   uniform_refine = 2
 []
@@ -361,7 +1362,7 @@
   [Duct]
     type = ConstantTransportMaterial
     transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;1.0e-4&#x27;
+    group_total = &#x27;1e-4&#x27;
     group_scattering = &#x27;0.5e-4&#x27;
     anisotropy = 0
     block = &#x27;0&#x27;
@@ -381,7 +1382,7 @@
 [Outputs]
   exodus = true
 []
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="9bcb7c79-7efe-4bc7-8d70-89b48e82ca20"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_2_no_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="ce9f112f-94fb-43d3-832a-9c656e27729e"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_2_no_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
   [domain]
     type = CartesianMeshGenerator
     dim = 3
@@ -455,626 +1456,7 @@
   exodus = true
   execute_on = &#x27;TIMESTEP_END&#x27;
 []
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="9af2c0ee-10a5-4b4b-b799-536d6210a7b9"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_2_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 3
-    dx = &#x27;10 50&#x27;
-    dy = &#x27;10 90&#x27;
-    dz = &#x27;10 50&#x27;
-    ix = &#x27;1 5&#x27;
-    iy = &#x27;1 9&#x27;
-    iz = &#x27;1 5&#x27;
-    subdomain_id = &#x27;
-    2 1
-    0 1
-
-    1 1
-    1 1&#x27;
-  []
-  uniform_refine = 2
-[]
-
-[UncollidedFlux]
-  [Neutron]
-    uncollided_flux_treatment = ray-tracing
-    num_groups = 1
-    max_anisotropy = 0
-
-    volumetric_source_blocks = &#x27;2&#x27;
-    volumetric_source_moments = &#x27;1.0&#x27;
-    volumetric_source_anisotropies = &#x27;0&#x27;
-
-    rt_n_polar = 5
-    rt_n_azimuthal = 5
-  []
-[]
-
-[TransportMaterials]
-  [Shield]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;0.1&#x27;
-    group_scattering = &#x27;0.05&#x27;
-    anisotropy = 0
-    block = &#x27;1 2&#x27;
-  []
-  [Duct]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;1e-4&#x27;
-    group_scattering = &#x27;0.5e-4&#x27;
-    anisotropy = 0
-    block = &#x27;0&#x27;
-  []
-[]
-
-[Problem]
-  type = FEProblem
-  solve = false
-  kernel_coverage_check = false
-[]
-
-[Executioner]
-  type = Steady
-[]
-
-[Outputs]
-  exodus = true
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="c44617ff-29f2-4bdf-90aa-e5140402b79b"><div class="modal-content"><h4>(examples/2D_scattering_2_group_cgfem/test.i)</h4><pre class="moose-pre"><code class="language-moose"># A simple test case with a purely absorbing medium and a point source in the
-# middle of the domain.
-
-[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 2
-    dx = 10
-    dy = 10
-    ix = 101
-    iy = 101
-  []
-[]
-
-[TransportSystems]
-  [Neutron]
-    num_groups = 2
-    max_anisotropy = 0
-    scheme = saaf_cfem
-    particle_type = neutron
-    output_angular_fluxes = false
-
-    order = FIRST
-    family = LAGRANGE
-
-    n_azimuthal = 2
-    n_polar = 2
-
-    vacuum_boundaries = &#x27;left right top bottom&#x27;
-
-    point_source_locations = &#x27;5.0 5.0 0.0&#x27;
-    point_source_moments = &#x27;1e3 0.0&#x27;
-    point_source_anisotropies = &#x27;0&#x27;
-    scale_sources = true
-  []
-[]
-
-[TransportMaterials]
-  [Domain]
-    type = ConstantTransportMaterial
-    transport_system = Neutron
-    anisotropy = 0
-    group_total = &#x27;1.1 1.0&#x27;
-    group_scattering = &#x27;0.5 0.5 0.0 1.0&#x27;
-  []
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
-  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
-  petsc_options_value = &#x27; hypre    boomeramg      10&#x27;
-  l_max_its = 50
-  nl_rel_tol = 1e-12
-[]
-
-[Outputs]
-  exodus = true
-  execute_on = &#x27;TIMESTEP_END&#x27;
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="4013b219-3759-47ee-a01f-8434efea4a41"><div class="modal-content"><h4>(tests/transport_system/saaf_cgfem/test_1D_scattering_steady.i)</h4><pre class="moose-pre"><code class="language-moose"># A simple test case with a purely absorbing medium and a point source in the
-# middle of the domain.
-
-[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 1
-    dx = 10
-    ix = 100
-  []
-[]
-
-[TransportSystems]
-  [Neutron]
-    scheme = saaf_cfem
-    particle_type = neutron
-    num_groups = 1
-    output_angular_fluxes = true
-    use_scattering_jacobians = true
-
-    order = FIRST
-    family = LAGRANGE
-
-    n_azimuthal = 1
-    n_polar = 1
-
-    max_anisotropy = 0
-    vacuum_boundaries = &#x27;left right&#x27;
-
-    point_source_locations = &#x27;5.0 0.0 0.0&#x27;
-    point_source_moments = &#x27;1000.0&#x27;
-    point_source_anisotropies = &#x27;0&#x27;
-
-    debug_verbosity = level0
-  []
-[]
-
-[TransportMaterials]
-  [Domain1]
-    type = ConstantTransportMaterial
-    transport_system = Neutron
-    anisotropy = 0
-    group_total = 2.0
-    group_scattering = 1.0
-    group_speeds = 2200.0
-  []
-[]
-
-[Problem]
-  type = FEProblem
-[]
-
-[Outputs]
-  exodus = true
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
-  line_search = default
-  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
-  petsc_options_value = &#x27;hypre boomeramg 10&#x27;
-  l_max_its = 50
-  nl_rel_tol = 1e-12
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="77ea2eb2-2e34-4cee-bb99-0ac09ffb7576"><div class="modal-content"><h4>(examples/2D_watanabe_maynard_cfem/test.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 2
-    dx = &#x27;5.0 3.75 2.5 3.75 5.0&#x27;
-    dy = &#x27;5.0 3.75 2.5 3.75 5.0&#x27;
-    ix = &#x27;8 6 4 6 8&#x27;
-    iy = &#x27;8 6 4 6 8&#x27;
-    subdomain_id = &#x27;
-    3 3 3 3 3
-    3 2 2 2 3
-    3 2 1 2 3
-    3 2 2 2 3
-    3 3 3 3 3&#x27;
-  []
-  uniform_refine = 2
-[]
-
-[TransportSystems]
-  [Neutron]
-    num_groups = 1
-    max_anisotropy = 0
-    scheme = saaf_cfem
-    particle_type = neutron
-
-    order = FIRST
-    family = LAGRANGE
-
-    n_azimuthal = 7
-    n_polar = 7
-
-    vacuum_boundaries = &#x27;left right top bottom&#x27;
-
-    volumetric_source_blocks = &#x27;1&#x27;
-    volumetric_source_moments = &#x27;6.4&#x27;
-    volumetric_source_anisotropies = &#x27;0&#x27;
-    scale_sources = true
-  []
-[]
-
-[TransportMaterials]
-  [Void]
-    type = ConstantTransportMaterial
-    transport_system = Neutron
-    group_total = &#x27;2.0e-10&#x27;
-    group_scattering = &#x27;1.9e-10&#x27;
-    block = &#x27;2&#x27;
-  []
-  [Other]
-    type = ConstantTransportMaterial
-    transport_system = Neutron
-    group_total = &#x27;0.2&#x27;
-    group_scattering = &#x27;0.19&#x27;
-    block = &#x27;1 3&#x27;
-  []
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
-  petsc_options_iname = &#x27;-ksp_gmres_restart&#x27;
-  petsc_options_value = &#x27; 300&#x27;
-
-  l_max_its = 50
-  nl_rel_tol = 1e-12
-
-  automatic_scaling = true
-  off_diagonals_in_auto_scaling = true
-  compute_scaling_once = false
-[]
-
-[Outputs]
-  exodus = true
-  execute_on = &#x27;TIMESTEP_END&#x27;
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="32eb2439-f85a-4fbc-af16-338b1c3629f9"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_1_no_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 3
-    dx = &#x27;10 40 50&#x27;
-    dy = &#x27;10 40 50&#x27;
-    dz = &#x27;10 40 50&#x27;
-    ix = &#x27;1 4 5&#x27;
-    iy = &#x27;1 4 5&#x27;
-    iz = &#x27;1 4 5&#x27;
-    subdomain_id = &#x27;
-    2 0 1
-    0 0 1
-    1 1 1
-
-    0 0 1
-    0 0 1
-    1 1 1
-
-    1 1 1
-    1 1 1
-    1 1 1&#x27;
-  []
-  uniform_refine = 2
-[]
-
-[TransportSystems]
-  [Neutron]
-    num_groups = 1
-    max_anisotropy = 0
-    scheme = saaf_cfem
-    particle_type = neutron
-
-    order = FIRST
-    family = LAGRANGE
-
-    n_azimuthal = 5
-    n_polar = 5
-
-    vacuum_boundaries = &#x27;right top front&#x27;
-    reflective_boundaries = &#x27;back bottom left&#x27;
-
-    volumetric_source_blocks = &#x27;2&#x27;
-    volumetric_source_moments = &#x27;1.0&#x27;
-    volumetric_source_anisotropies = &#x27;0&#x27;
-  []
-[]
-
-[TransportMaterials]
-  [Shield]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;0.1&#x27;
-    group_scattering = &#x27;0.05&#x27;
-    anisotropy = 0
-    block = &#x27;1 2&#x27;
-  []
-  [Duct]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;1e-4&#x27;
-    group_scattering = &#x27;0.5e-4&#x27;
-    anisotropy = 0
-    block = &#x27;0&#x27;
-  []
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
-  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
-  petsc_options_value = &#x27; hypre    boomeramg      30&#x27;
-  l_max_its = 50
-  nl_rel_tol = 1e-12
-[]
-
-[Outputs]
-  exodus = true
-  execute_on = &#x27;TIMESTEP_END&#x27;
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="c9349452-a4c4-4a50-ba44-8ad538e57c7d"><div class="modal-content"><h4>(examples/2D_source_cgfem/test.i)</h4><pre class="moose-pre"><code class="language-moose"># A simple test case with a purely absorbing medium and a point source in the
-# middle of the domain.
-
-[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 2
-    dx = &#x27;4 20 20&#x27;
-    dy = &#x27;4 20 20&#x27;
-    ix = &#x27;4 20 20&#x27;
-    iy = &#x27;4 20 20&#x27;
-    subdomain_id = &#x27;
-      2 1 1
-      1 1 1
-      1 1 1&#x27;
-  []
-[]
-
-[TransportSystems]
-  [Neutron]
-    scheme = saaf_cfem
-    particle_type = neutron
-    num_groups = 1
-    max_anisotropy = 0
-
-    order = FIRST
-    family = LAGRANGE
-
-    n_azimuthal = 20
-    n_polar = 20
-
-    volumetric_source_blocks = &#x27;2&#x27;
-    volumetric_source_moments = &#x27;1e0&#x27;
-    volumetric_source_anisotropies = &#x27;0&#x27;
-    scale_sources = true
-
-    vacuum_boundaries = &#x27;left right top bottom&#x27;
-  []
-[]
-
-[TransportMaterials]
-  [Domain]
-    type = ConstantTransportMaterial
-    transport_system = Neutron
-    group_total = &#x27;1.1e-6&#x27;
-    group_scattering = &#x27;1e-6&#x27;
-    block = &#x27;1 2&#x27;
-  []
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
-  #petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
-  #petsc_options_value = &#x27; hypre    boomeramg      600&#x27;
-  petsc_options_iname = &#x27;-ksp_gmres_restart&#x27;
-  petsc_options_value = &#x27; 600&#x27;
-  l_max_its = 50
-  nl_rel_tol = 1e-12
-[]
-
-[Outputs]
-  exodus = true
-  execute_on = &#x27;TIMESTEP_END&#x27;
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="7d0dd2ee-77e1-4f5d-b188-70022fb885fe"><div class="modal-content"><h4>(examples/3D_ray_tracing/point_source_verification_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 3
-    dx = &#x27;0.5 1.0 0.5&#x27;
-    dy = &#x27;0.5 1.0 0.5&#x27;
-    dz = &#x27;0.5 1.0 0.5&#x27;
-    ix = &#x27;5 10 5&#x27;
-    iy = &#x27;5 10 5&#x27;
-    iz = &#x27;5 10 5&#x27;
-    subdomain_id = &#x27;
-    0 0 0
-    0 0 0
-    0 0 0
-
-    0 0 0
-    0 1 0
-    0 0 0
-
-    0 0 0
-    0 0 0
-    0 0 0&#x27;
-  []
-  uniform_refine = 3
-[]
-
-[UncollidedFlux]
-  [Neutron]
-    uncollided_flux_treatment = ray-tracing
-    num_groups = 1
-    max_anisotropy = 0
-
-    point_source_locations = &#x27;1.0 1.0 1.0&#x27;
-    point_source_moments = &#x27;1.0&#x27;
-    point_source_anisotropies = &#x27;0&#x27;
-  []
-[]
-
-[TransportMaterials]
-  [Duct]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;0.0&#x27;
-    group_scattering = &#x27;0.0&#x27;
-    anisotropy = 0
-    block = &#x27;0 1&#x27;
-  []
-[]
-
-[Functions]
-  [Analytical]
-    type = ParsedFunction
-    expression = &#x27;1.0 / (4.0 * pi * ((x - 1) * (x - 1) + (y - 1) * (y - 1) + (z - 1) * (z - 1)))&#x27;
-  []
-[]
-
-[Postprocessors]
-  [Error]
-    type = ElementL2Error
-    function = Analytical
-    variable = uncollided_flux_moment_1_0_0
-    block = &#x27;0&#x27;
-  []
-  [h]
-    type = AverageElementSize
-    block = &#x27;0&#x27;
-  []
-[]
-
-[Problem]
-  type = FEProblem
-  solve = false
-  kernel_coverage_check = false
-[]
-
-[Executioner]
-  type = Steady
-[]
-
-[Outputs]
-  exodus = true
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="4cb6ab6d-fcff-402b-9ac3-e37181b61f28"><div class="modal-content"><h4>(examples/2D_air_uvc_cgfem/test.i)</h4><pre class="moose-pre"><code class="language-moose"># Simulating the 222 nm radiation fields caused by a
-# far UV-C lamp in the corner of a room in air. The lamp is modelled as a point source.
-
-[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 2
-    dx = 300.0
-    dy = 300.0
-    ix = 101
-    iy = 101
-  []
-[]
-
-[TransportSystems]
-  [UVC]
-    num_groups = 1
-    scheme = saaf_cfem
-    particle_type = photon
-
-    order = FIRST
-    family = LAGRANGE
-
-    n_azimuthal = 18
-    n_polar = 18
-
-    max_anisotropy = 0
-    vacuum_boundaries = &#x27;left right top bottom&#x27;
-
-    point_source_locations = &#x27;298.0 298.0 0.0&#x27;
-    point_source_moments = &#x27;0.027646015&#x27;
-    point_source_anisotropies = &#x27;0&#x27;
-    scale_sources = true
-  []
-[]
-
-[TransportMaterials]
-  [Domain]
-    type = ConstantTransportMaterial
-    transport_system = UVC
-    group_total = 0.0000329
-    group_scattering = 4.6e-6
-  []
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
-  petsc_options_iname = &#x27;-ksp_gmres_restart&#x27;
-  petsc_options_value = &#x27; 600&#x27;
-
-  l_max_its = 50
-  nl_abs_tol = 1e-12
-
-  automatic_scaling = true
-  off_diagonals_in_auto_scaling = true
-  compute_scaling_once = false
-[]
-
-[Outputs]
-  exodus = true
-  execute_on = &#x27;TIMESTEP_END&#x27;
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="da61590f-942b-43e8-a6d0-5a9ae1a596e6"><div class="modal-content"><h4>(examples/3D_ray_tracing/point_source_verification_shield_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 3
-    dx = &#x27;0.9 0.2 0.9&#x27;
-    dy = &#x27;0.9 0.2 0.9&#x27;
-    dz = &#x27;0.9 0.2 0.9&#x27;
-    ix = &#x27;9 2 9&#x27;
-    iy = &#x27;9 2 9&#x27;
-    iz = &#x27;9 2 9&#x27;
-    subdomain_id = &#x27;
-    0 0 0
-    0 0 0
-    0 0 0
-
-    0 0 0
-    0 1 0
-    0 0 0
-
-    0 0 0
-    0 0 0
-    0 0 0&#x27;
-  []
-  uniform_refine = 3
-[]
-
-[UncollidedFlux]
-  [Neutron]
-    uncollided_flux_treatment = ray-tracing
-    num_groups = 1
-    max_anisotropy = 0
-
-    point_source_locations = &#x27;1.0 1.0 1.0&#x27;
-    point_source_moments = &#x27;1.0&#x27;
-    point_source_anisotropies = &#x27;0&#x27;
-  []
-[]
-
-[TransportMaterials]
-  [Shield]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;1e-2&#x27;
-    group_scattering = &#x27;0.0&#x27;
-    anisotropy = 0
-    block = &#x27;0 1&#x27;
-  []
-[]
-
-[Problem]
-  type = FEProblem
-  solve = false
-  kernel_coverage_check = false
-[]
-
-[Executioner]
-  type = Steady
-[]
-
-[Outputs]
-  exodus = true
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="eaef2141-1019-42a4-941c-82debef139f8"><div class="modal-content"><h4>(examples/2D_rad_con/radiation_transient.i)</h4><pre class="moose-pre"><code class="language-moose"># Mesh is in cm, need to convert all units to cm.
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="5332e1f1-854b-4b00-8e47-185fe5163cee"><div class="modal-content"><h4>(examples/2D_rad_con/radiation_transient.i)</h4><pre class="moose-pre"><code class="language-moose"># Mesh is in cm, need to convert all units to cm.
 [Mesh]
   [Domain]
     type = FileMeshGenerator
@@ -1166,38 +1548,25 @@
 [Outputs]
   exodus = true
 []
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="5840ab81-22bd-4b2a-be49-8ea9457c6072"><div class="modal-content"><h4>(examples/3D_ray_tracing/point_source_verification.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="3b9cd6f9-85f7-47c1-bbcd-9f4ba994c965"><div class="modal-content"><h4>(tests/transport_system/saaf_cgfem/test_1D_scattering_steady.i)</h4><pre class="moose-pre"><code class="language-moose"># A simple test case with a purely absorbing medium and a point source in the
+# middle of the domain.
+
+[Mesh]
   [domain]
     type = CartesianMeshGenerator
-    dim = 3
-    dx = &#x27;0.5 1.0 0.5&#x27;
-    dy = &#x27;0.5 1.0 0.5&#x27;
-    dz = &#x27;0.5 1.0 0.5&#x27;
-    ix = &#x27;5 10 5&#x27;
-    iy = &#x27;5 10 5&#x27;
-    iz = &#x27;5 10 5&#x27;
-    subdomain_id = &#x27;
-    0 0 0
-    0 0 0
-    0 0 0
-
-    0 0 0
-    0 1 0
-    0 0 0
-
-    0 0 0
-    0 0 0
-    0 0 0&#x27;
+    dim = 1
+    dx = 10
+    ix = 100
   []
-  uniform_refine = 2
 []
 
 [TransportSystems]
   [Neutron]
-    num_groups = 1
-    max_anisotropy = 0
     scheme = saaf_cfem
     particle_type = neutron
+    num_groups = 1
+    output_angular_fluxes = true
+    use_scattering_jacobians = true
 
     order = FIRST
     family = LAGRANGE
@@ -1205,412 +1574,43 @@
     n_azimuthal = 1
     n_polar = 1
 
-    vacuum_boundaries = &#x27;left right top bottom&#x27;
+    max_anisotropy = 0
+    vacuum_boundaries = &#x27;left right&#x27;
 
-    uncollided_from_multi_app = &#x27;Uncollided&#x27;
+    point_source_locations = &#x27;5.0 0.0 0.0&#x27;
+    point_source_moments = &#x27;1000.0&#x27;
+    point_source_anisotropies = &#x27;0&#x27;
+
+    debug_verbosity = level0
   []
 []
 
 [TransportMaterials]
-  [Duct]
+  [Domain1]
     type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;0.0&#x27;
-    group_scattering = &#x27;0.0&#x27;
+    transport_system = Neutron
     anisotropy = 0
-    block = &#x27;0 1&#x27;
-  []
-[]
-
-[Functions]
-  [Analytical]
-    type = ParsedFunction
-    expression = &#x27;1.0 / (4.0 * pi * ((x - 1) * (x - 1) + (y - 1) * (y - 1) + (z - 1) * (z - 1)))&#x27;
-  []
-[]
-
-[Postprocessors]
-  [Error]
-    type = ElementL2Error
-    function = Analytical
-    variable = flux_moment_1_0_0
-    block = &#x27;0&#x27;
-  []
-  [h]
-    type = AverageElementSize
-    block = &#x27;0&#x27;
+    group_total = 2.0
+    group_scattering = 1.0
+    group_speeds = 2200.0
   []
 []
 
 [Problem]
   type = FEProblem
-  solve = false
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
 []
 
 [Outputs]
   exodus = true
 []
 
-[MultiApps]
-  [Uncollided]
-    type = FullSolveMultiApp
-    app_type = GnatApp
-    input_files = &#x27;point_source_verification_rt.i&#x27;
-    execute_on = INITIAL
-  []
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="4ceccb32-f5ce-48b8-913d-f9f9581188f0"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_1.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 3
-    dx = &#x27;10 40 50&#x27;
-    dy = &#x27;10 40 50&#x27;
-    dz = &#x27;10 40 50&#x27;
-    ix = &#x27;1 4 5&#x27;
-    iy = &#x27;1 4 5&#x27;
-    iz = &#x27;1 4 5&#x27;
-    subdomain_id = &#x27;
-    2 0 1
-    0 0 1
-    1 1 1
-
-    0 0 1
-    0 0 1
-    1 1 1
-
-    1 1 1
-    1 1 1
-    1 1 1&#x27;
-  []
-  uniform_refine = 1
-[]
-
-[TransportSystems]
-  [Neutron]
-    num_groups = 1
-    max_anisotropy = 0
-    scheme = saaf_cfem
-    particle_type = neutron
-
-    order = FIRST
-    family = LAGRANGE
-
-    n_azimuthal = 5
-    n_polar = 5
-
-    vacuum_boundaries = &#x27;right top front&#x27;
-    reflective_boundaries = &#x27;back bottom left&#x27;
-
-    uncollided_from_multi_app = &#x27;Uncollided&#x27;
-  []
-[]
-
-[TransportMaterials]
-  [Shield]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;0.1&#x27;
-    group_scattering = &#x27;0.05&#x27;
-    anisotropy = 0
-    block = &#x27;1 2&#x27;
-  []
-  [Duct]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;1e-4&#x27;
-    group_scattering = &#x27;0.5e-4&#x27;
-    anisotropy = 0
-    block = &#x27;0&#x27;
-  []
-[]
-
 [Executioner]
   type = Steady
   solve_type = PJFNK
-  #petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
-  #petsc_options_value = &#x27; hypre    boomeramg      100&#x27;
-  l_max_its = 50
-  nl_rel_tol = 1e-12
-
-  automatic_scaling = true
-  off_diagonals_in_auto_scaling = true
-  compute_scaling_once = false
-[]
-
-[MultiApps]
-  [Uncollided]
-    type = FullSolveMultiApp
-    app_type = GnatApp
-    input_files = &#x27;kobayashi_1_rt.i&#x27;
-    execute_on = INITIAL
-  []
-[]
-
-[Outputs]
-  exodus = true
-  execute_on = &#x27;TIMESTEP_END&#x27;
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="f760d123-638b-4f60-8c19-16e0ddfbc39c"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_1_rt.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 3
-    dx = &#x27;10 40 50&#x27;
-    dy = &#x27;10 40 50&#x27;
-    dz = &#x27;10 40 50&#x27;
-    ix = &#x27;1 4 5&#x27;
-    iy = &#x27;1 4 5&#x27;
-    iz = &#x27;1 4 5&#x27;
-    subdomain_id = &#x27;
-    2 0 1
-    0 0 1
-    1 1 1
-
-    0 0 1
-    0 0 1
-    1 1 1
-
-    1 1 1
-    1 1 1
-    1 1 1&#x27;
-  []
-  uniform_refine = 2
-[]
-
-[UncollidedFlux]
-  [Neutron]
-    uncollided_flux_treatment = ray-tracing
-    num_groups = 1
-    max_anisotropy = 0
-
-    volumetric_source_blocks = &#x27;2&#x27;
-    volumetric_source_moments = &#x27;1.0&#x27;
-    volumetric_source_anisotropies = &#x27;0&#x27;
-
-    rt_n_polar = 5
-    rt_n_azimuthal = 5
-  []
-[]
-
-[TransportMaterials]
-  [Shield]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;0.1&#x27;
-    group_scattering = &#x27;0.05&#x27;
-    anisotropy = 0
-    block = &#x27;1 2&#x27;
-  []
-  [Duct]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;1e-4&#x27;
-    group_scattering = &#x27;0.5e-4&#x27;
-    anisotropy = 0
-    block = &#x27;0&#x27;
-  []
-[]
-
-[Problem]
-  type = FEProblem
-  solve = false
-  kernel_coverage_check = false
-[]
-
-[Executioner]
-  type = Steady
-[]
-
-[Outputs]
-  exodus = true
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="b909ea62-b3f6-4419-9140-13c6b0cca516"><div class="modal-content"><h4>(examples/3D_kobayashi/kobayashi_3.i)</h4><pre class="moose-pre"><code class="language-moose">[Mesh]
-  [domain]
-    type = CartesianMeshGenerator
-    dim = 3
-    dx = &#x27;10 20 10 20&#x27;
-    dy = &#x27;10 40 10 40&#x27;
-    dz = &#x27;10 20 10 20&#x27;
-    ix = &#x27;1 2 1 2&#x27;
-    iy = &#x27;1 4 1 4&#x27;
-    iz = &#x27;1 2 1 2&#x27;
-    subdomain_id = &#x27;
-    2 1 1 1
-    0 1 1 1
-    0 0 0 1
-    1 1 1 1
-
-    1 1 1 1
-    1 1 1 1
-    1 1 0 1
-    1 1 1 1
-
-    1 1 1 1
-    1 1 1 1
-    1 1 0 1
-    1 1 0 1
-
-    1 1 1 1
-    1 1 1 1
-    1 1 1 1
-    1 1 1 1&#x27;
-  []
-  uniform_refine = 1
-[]
-
-[TransportSystems]
-  [Neutron]
-    num_groups = 1
-    max_anisotropy = 0
-    scheme = saaf_cfem
-    particle_type = neutron
-
-    order = FIRST
-    family = LAGRANGE
-
-    n_azimuthal = 5
-    n_polar = 5
-
-    vacuum_boundaries = &#x27;right top front&#x27;
-    reflective_boundaries = &#x27;back bottom left&#x27;
-
-    uncollided_from_multi_app = &#x27;Uncollided&#x27;
-  []
-[]
-
-[TransportMaterials]
-  [Shield]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;0.1&#x27;
-    group_scattering = &#x27;0.05&#x27;
-    anisotropy = 0
-    block = &#x27;1 2&#x27;
-  []
-  [Duct]
-    type = ConstantTransportMaterial
-    transport_system = &#x27;Neutron&#x27;
-    group_total = &#x27;1.0e-4&#x27;
-    group_scattering = &#x27;0.5e-4&#x27;
-    anisotropy = 0
-    block = &#x27;0&#x27;
-  []
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
+  line_search = default
   petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
-  petsc_options_value = &#x27; hypre    boomeramg      100&#x27;
+  petsc_options_value = &#x27;hypre boomeramg 10&#x27;
   l_max_its = 50
   nl_rel_tol = 1e-12
-
-  automatic_scaling = true
-  off_diagonals_in_auto_scaling = true
-  compute_scaling_once = false
 []
-
-[MultiApps]
-  [Uncollided]
-    type = FullSolveMultiApp
-    app_type = GnatApp
-    input_files = &#x27;kobayashi_3_rt.i&#x27;
-    execute_on = INITIAL
-  []
-[]
-
-[Outputs]
-  exodus = true
-  execute_on = TIMESTEP_END
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="6a0b2989-48f9-4530-8188-7a4349783dd6"><div class="modal-content"><h4>(examples/2D_rad_con/radiation_steady.i)</h4><pre class="moose-pre"><code class="language-moose"># Mesh is in cm, need to convert all units to cm.
-[Mesh]
-  [Domain]
-    type = FileMeshGenerator
-    file = Radiation_Mesh.e
-  []
-[]
-
-[TransportSystems]
-  [Photon]
-    scheme = saaf_cfem
-    particle_type = photon
-
-    flux_moment_names = &#x27;Flux_Moment&#x27;
-    family = LAGRANGE
-    order = FIRST
-
-    num_groups = 1
-    max_anisotropy = 0
-    n_azimuthal = 7
-    n_polar = 7
-
-    vacuum_boundaries = vacuum
-
-    field_source_blocks = air
-    field_source_moments = &#x27;photon_source_g_0&#x27;
-    field_source_anisotropies = &#x27;0&#x27;
-    field_source_scaling = &#x27;1e5&#x27;
-    scale_sources = true
-  []
-[]
-
-[TransportMaterials]
-  [Air]
-    type = ConstantTransportMaterial
-    transport_system = Photon
-    group_total = 3.29e-5
-    group_scattering = &#x27;4.6e-6&#x27;
-    anisotropy = 0
-  []
-[]
-
-[AuxVariables]
-  [photon_source_g_0]
-    type = MooseVariable
-    family = MONOMIAL
-    order = CONSTANT
-  []
-[]
-
-[Transfers]
-  [G0]
-    type = MultiAppGeneralFieldShapeEvaluationTransfer
-    from_multi_app = Tracer
-    variable = photon_source_g_0
-    source_variable = photon_source_g_0
-  []
-[]
-
-[MultiApps]
-  [Tracer]
-    type = FullSolveMultiApp
-    app_type = GnatApp
-    execute_on = TIMESTEP_BEGIN
-    input_files = tracer_steady.i
-  []
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = PJFNK
-
-  petsc_options_iname = &#x27;-ksp_gmres_restart&#x27;
-  petsc_options_value = &#x27; 600&#x27;
-
-  l_max_its = 50
-  nl_abs_tol = 1e-12
-
-  automatic_scaling = true
-  off_diagonals_in_auto_scaling = true
-  compute_scaling_once = false
-[]
-
-[Outputs]
-  exodus = true
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a href="#2bc897ec-b82e-49cf-9ee2-6e1fb6d064cb" class="tooltipped" data-position="left" data-tooltip="Overview">Overview</a></li><li><a href="#c6bbe11a-984f-49d8-b67e-72dc788a4257" class="tooltipped" data-position="left" data-tooltip="Example Input File Syntax">Example Input File Syntax</a></li><li><a href="#15432944-acf7-4761-9cc8-f110e988a8b0" class="tooltipped" data-position="left" data-tooltip="Input Parameters">Input Parameters</a></li><li><a href="#95832afc-6d39-457a-a93c-949057d9474e" class="tooltipped" data-position="left" data-tooltip="Input Files">Input Files</a></li></ul></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="../../contrib/fuse/fuse.min.js"></script><script type="text/javascript" src="../../js/search_index.js"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a href="#f4978fda-ab35-4316-b762-cfd4336c4ae5" class="tooltipped" data-position="left" data-tooltip="Overview">Overview</a></li><li><a href="#a03b371b-6539-4cdf-b793-e7ab5d90e1f9" class="tooltipped" data-position="left" data-tooltip="Example Input File Syntax">Example Input File Syntax</a></li><li><a href="#6c86c88e-fcf7-4cf5-b5ab-bae17b7da88c" class="tooltipped" data-position="left" data-tooltip="Input Parameters">Input Parameters</a></li><li><a href="#8e2ab401-1619-4781-be57-ba146382fac6" class="tooltipped" data-position="left" data-tooltip="Input Files">Input Files</a></li></ul></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="../../contrib/fuse/fuse.min.js"></script><script type="text/javascript" src="../../js/search_index.js"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>
